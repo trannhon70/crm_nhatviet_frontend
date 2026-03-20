@@ -26,12 +26,13 @@ const FormSearch: FC<Iprops> = (props) => {
     const navige = useNavigate()
     const { t } = useTranslation(['DSDangKyHen']);
     const { patient, disease } = useSelector((state: RootState) => state);
+    const { entities } = useSelector((state: RootState) => state.users)
     const dispatch = useDispatch<AppDispatch>();
     const hospitalId = localStorage.getItem('hospitalId')
     const menu = useMenuData();
 
     useEffect(() => {
-        if(hospitalId) {
+        if (hospitalId) {
             dispatch(getAllDisease(Number(hospitalId)))
         }
     }, [hospitalId])
@@ -57,14 +58,14 @@ const FormSearch: FC<Iprops> = (props) => {
     const onchangecreatedAt = (e: any) => {
         setQuery((query: any) => ({
             ...query,
-            created_at: e ?  JSON.stringify([dayjs(e?.[0]).unix(), dayjs(e?.[1]).unix()]) : '' ,
+            created_at: e ? JSON.stringify([dayjs(e?.[0]).unix(), dayjs(e?.[1]).unix()]) : '',
         }))
     }
 
     const onchangeAppointmentTime = (e: any) => {
         setQuery((query: any) => ({
             ...query,
-            appointmentTime: e ?  JSON.stringify([dayjs(e?.[0]).unix(), dayjs(e?.[1]).unix()]) : '' ,
+            appointmentTime: e ? JSON.stringify([dayjs(e?.[0]).unix(), dayjs(e?.[1]).unix()]) : '',
         }))
     }
 
@@ -194,26 +195,31 @@ const FormSearch: FC<Iprops> = (props) => {
                     onChange={handleChangeDiseases}
                 />
             </div>
-            <div className='w-[150px]'>
-                <div>{t("DSDangKyHen:nguon_den")}:</div>
-                <Select
-                    size="small"
-                    allowClear
-                    className='w-[100%]'
-                    showSearch
-                    placeholder={`--${t("DSDangKyHen:lua_chon")}--`}
-                    filterOption={(input, option) =>
-                        typeof option?.label === 'string' && option.label.toLowerCase().includes(input.toLowerCase())
-                    }
-                    options={patient?.media?.map((item: any) => {
-                        return {
-                            value: item.id,
-                            label: item.name
+            {
+                //khác tài khoản có id này mới hiển thị
+                entities.id !== 83 &&
+                <div className='w-[150px]'>
+                    <div>{t("DSDangKyHen:nguon_den")}:</div>
+                    <Select
+                        size="small"
+                        allowClear
+                        className='w-[100%]'
+                        showSearch
+                        placeholder={`--${t("DSDangKyHen:lua_chon")}--`}
+                        filterOption={(input, option) =>
+                            typeof option?.label === 'string' && option.label.toLowerCase().includes(input.toLowerCase())
                         }
-                    })}
-                    onChange={handleChangeMedia}
-                />
-            </div>
+                        options={patient?.media?.map((item: any) => {
+                            return {
+                                value: item.id,
+                                label: item.name
+                            }
+                        })}
+                        onChange={handleChangeMedia}
+                    />
+                </div>
+            }
+
             <div>
                 <Button size='small' htmlType="submit" type="primary" variant="dashed" color="primary" >
                     {t("DSDangKyHen:tim_kiem")}
