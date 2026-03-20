@@ -85,7 +85,9 @@ const AppointmentRegistrationList: FC = () => {
                 userId: menu[1].ds.action_DSDKH.viewAllData ? '' : entities.id,
                 pageSize: pageSize,
                 pageIndex: pageIndex,
-                hospitalId: hospitalId
+                hospitalId: hospitalId,
+                //nếu user có id là 83 thì chỉ cho nhìn thấy danh sách FB2
+                mediaId: entities.id === 83 ? 21 : ""
             };
 
             setQuery(updatedQuery);
