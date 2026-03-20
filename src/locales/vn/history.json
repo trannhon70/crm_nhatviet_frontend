@@ -1,0 +1,17 @@
+{
+    "lich_su_thao_tac":"Lịch sử thao tác",
+    "nhat_ky_nguoi_dung":"Nhật ký hoạt động",
+    "stt":"STT",
+    "hanh_dong":"Hành động",
+    "nguoi_dung":"Người dùng",
+    "dia_chi_ip":"Địa chỉ IP",
+    "thoi_gian":"Thời gian",
+    "thao_tac":"Thao tác",
+    "xoa_lich_su":"Xóa lịch sử",
+    "ban_co_chac_chan_muon_xoa_lich_su":"Bạn có chắc chắn muốn xóa lịch sử này không!",
+    "nhap_nguoi_dung_dia_chi_ip":"Nhập người dùng, địa chỉ ip",
+    "mat_khau":"Mật khẩu",
+    "loi":"Lỗi",
+    "nhat_ky_loi_dang_nhap":"Nhật ký lỗi đăng nhập"
+    
+}

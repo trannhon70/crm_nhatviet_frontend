@@ -1,0 +1,23 @@
+{
+    "trang_chu": "主页",
+    "thong_tin_ca_nhan": "个人信息",
+    "ho_va_ten": "姓名",
+    "ngon_ngu": "语言 ",
+    "tieng_viet": "越南语",
+    "tieng_trung": "中文",
+    "cap_nhat": "更新",
+    "thay_doi_mat_khau": "更换密码",
+    "meo_sua_doi": "修改提示",
+    "meo_1": "您需要输入准确的原始密码和新密码含有至少6个数字，输入两次",
+    "meo_2": "您的新密码在更换成功后马上生效，您需要在任何需要个人密码的事项填写以上新密码",
+    "mat_khau_goc": "原始密码",
+    "mat_khau_moi": "新密码",
+    "nhap_lại_mat_khau_moi": "从输新密码",
+    "cap_nhat_thanh_cong":"更新成功!",
+    "cap_nhat_khong_thanh_cong":"更新不成功!",
+    "mat_khau_goc_khong_dung": "密码不正确!",
+    "vui_long_nhap_mat_khau_cua_ban":"请输入您的密码!",
+    "vui_long_nhap_mat_khau_moi_cua_ban":"请输入您的新密码！",
+    "vui_long_xac_nhap_mat_khau_moi_cua_ban":"请确认您的新密码！",
+    "mat_khau_moi_ban_nhap_khong_khop":"您输入的新密码不匹配!"
+}

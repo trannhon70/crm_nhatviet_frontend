@@ -1,0 +1,21 @@
+{
+    "quan_ly_cuoc_hen_benh_nhan":"病号预约管理",
+    "bao_cao_chi_tiet_dich_vu_khach_hang":"客服明细报表",
+    "hom_nay":"今天",
+    "hom_qua":"昨天",
+    "thang_nay":"当月",
+    "thang_truoc":"上个月",
+    "tu_van_vien":"咨询员",
+    "tong_cong":"总共",
+    "da_den":"已到",
+    "chua_den":"未到",
+    "thong_ke_bieu_do_ds_hen_theo_thang":"按月预约列表统计图",
+    "tong":"总数",
+    "chon_moc_thoi_gian":"选择时间挂钩",
+    "thoi_gian":"时间",
+    "tim_kiem":"搜素",
+    "thong_ke_tuy_chinh":"自定义统计",
+    "xuat_du_lieu_benh_nhan":"导出病人信息",
+    "du_lieu_xuat":"导出数据",
+    "tat_ca":"全部"
+}

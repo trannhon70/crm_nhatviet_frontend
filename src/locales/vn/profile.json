@@ -1,0 +1,23 @@
+{
+    "trang_chu": "Trang chủ",
+    "thong_tin_ca_nhan": "Thông tin cá nhân",
+    "ho_va_ten": "Họ và tên",
+    "ngon_ngu": "Ngôn ngữ",
+    "tieng_viet": "Tiếng việt",
+    "tieng_trung": "Tiếng trung",
+    "cap_nhat": "Cập nhật",
+    "thay_doi_mat_khau": "Thay đổi mật khẩu",
+    "meo_sua_doi": "Mẹo sửa đổi",
+    "meo_1": "Bạn phải nhập đúng mật khẩu ban đầu và mật khẩu mới ít nhất 6 chữ số 2 lần",
+    "meo_2": "Mật khẩu mới của bạn sẽ có hiệu lực ngay sau khi sửa đổi thành công và bạn nên sử dụng mật khẩu mới này ở bất cứ nơi nào cần có mật khẩu cá nhân của bạn",
+    "mat_khau_goc": "Mật khẩu góc",
+    "mat_khau_moi": "Mật khẩu mới",
+    "nhap_lại_mat_khau_moi": "Nhập lại mật khẩu mới",
+    "cap_nhat_thanh_cong":"Cập nhật thành công!",
+    "cap_nhat_khong_thanh_cong":"Cập nhật không thành công!",
+    "mat_khau_goc_khong_dung": "Mật khẩu gốc không đúng!",
+    "vui_long_nhap_mat_khau_cua_ban":"Vui lòng nhập mật khẩu của bạn!",
+    "vui_long_nhap_mat_khau_moi_cua_ban":"Vui lòng nhập mật khẩu mới của bạn!",
+    "vui_long_xac_nhap_mat_khau_moi_cua_ban":"Vui lòng xác nhận mật khẩu mới của bạn!",
+    "mat_khau_moi_ban_nhap_khong_khop":"Mật khẩu mới bạn nhập không khớp"
+}

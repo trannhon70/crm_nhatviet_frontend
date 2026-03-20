@@ -1,0 +1,17 @@
+{
+    "lich_su_thao_tac":"操作历史",
+    "nhat_ky_nguoi_dung":"活动日志",
+    "stt":"STT",
+    "hanh_dong":"行为",
+    "nguoi_dung":"用户",
+    "dia_chi_ip":"IP地址",
+    "thoi_gian":"时间",
+    "thao_tac":"操作",
+    "xoa_lich_su":"删除历史记录",
+    "ban_co_chac_chan_muon_xoa_lich_su":"您确定要删除此历史记录吗？",
+    "nhap_nguoi_dung_dia_chi_ip":"输入用户、ip地址",
+    "mat_khau":"密码",
+    "loi":"错误",
+    "nhat_ky_loi_dang_nhap":"登入出错日志"
+    
+}

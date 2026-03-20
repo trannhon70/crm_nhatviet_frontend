@@ -1,0 +1,8 @@
+{
+    "menu_left": {
+        "home": "Home",
+        "Patient_Appointment_Management": "Patient appointment management",
+        "Appointment_registration_list": "Appointment registration list",
+        "bao_cao_chi_tiet_dich_vu_khach_hang": ""
+    }
+}
