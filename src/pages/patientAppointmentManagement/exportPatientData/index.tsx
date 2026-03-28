@@ -11,13 +11,13 @@ import { getXuatDuLieuBenhNhan } from "../../../features/patientSlice";
 import useMenuData from "../../../hooks/useMenuData";
 
 const ExportPatientData: FC = () => {
-    const { dataExport , total} = useSelector((state: RootState) => state.patient)
+    const { dataExport, total } = useSelector((state: RootState) => state.patient)
     const hospitalId = localStorage.getItem('hospitalId');
     const dispatch = useDispatch<AppDispatch>();
     const [check, setCheck] = useState({
         name: true, gender: false, yearOld: false, phone: false, content: false, department: false, diseases: false, city: false,
         district: false, code: false, appointmentTime: false, reminderTime: false, note: false, status: false, doctor: false, user: false, treatment: false,
-        created_at: false, media: false
+        created_at: false, media: false, QCName: false
     })
     const [query, setQuery] = useState<any>({
         hospitalId: Number(hospitalId),
@@ -34,8 +34,8 @@ const ExportPatientData: FC = () => {
     })
     const { t } = useTranslation(['BCCTDVKH', 'DSDangKyHen'])
     const tableRef = useRef<HTMLDivElement>(null);
-    const menu = useMenuData(); 
-    
+    const menu = useMenuData();
+
     const dataBreadcrumb = [
         {
             title: t("BCCTDVKH:quan_ly_cuoc_hen_benh_nhan"),
@@ -57,10 +57,10 @@ const ExportPatientData: FC = () => {
                     if (total > prevQuery.pageSize) {
                         return {
                             ...prevQuery,
-                            pageSize: Math.min(prevQuery.pageSize + 20, total), 
+                            pageSize: Math.min(prevQuery.pageSize + 20, total),
                         };
                     }
-                    return prevQuery; 
+                    return prevQuery;
                 });
             }
         };
@@ -78,7 +78,7 @@ const ExportPatientData: FC = () => {
 
     useEffect(() => {
         dispatch(getXuatDuLieuBenhNhan(query))
-    }, [ query])
+    }, [query])
 
     const onFinish = (values: any) => {
         setQuery((query: any) => ({
@@ -98,7 +98,7 @@ const ExportPatientData: FC = () => {
         <BreadcrumbComponent items={dataBreadcrumb} />
         <div className="flex  justify-between " >
             <ComponentExportData setCheck={setCheck} check={check} menu={menu} />
-            <ModalSearch  hospitalId={hospitalId} onFinish={onFinish} />
+            <ModalSearch hospitalId={hospitalId} onFinish={onFinish} />
         </div>
         <div ref={tableRef} className="rounded border-lime-700 border mt-3 min-h-[50vh] max-h-[70vh] overflow-auto">
             <table style={{ outline: "none" }} className="w-full" contentEditable="true">
@@ -132,11 +132,13 @@ const ExportPatientData: FC = () => {
                                 {check.doctor && <td className="border p-1">{item?.doctor?.name}</td>}
                                 {check.user && <td className="border p-1">{item?.user?.fullName}</td>}
                                 {check.treatment && <td className="border p-1">{item?.treatment}</td>}
+                                {check.QCName && <td className="border p-1">{item?.QCName}</td>}
                                 {check.created_at && (
                                     <td className="border p-1">
                                         {moment(item?.created_at * 1000).format("DD-MM-YYYY HH:mm:ss")}
                                     </td>
                                 )}
+
                             </tr>
                         ))}
                 </tbody>

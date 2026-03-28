@@ -15,7 +15,7 @@ import Loading from "../../../components/loading";
 import NotHospital from "../../../components/notHospital";
 import PopconfirmComponent from "../../../components/popconfirmComponent";
 import TableComponent from "../../../components/tableComponent";
-import { fetchCity, getAllByIdHospital, getAllDoctor, getAllMedia, getPagingPatient, setDoctorIdReducer, setStatusReducer } from "../../../features/patientSlice";
+import { fetchCity, getAllByIdHospital, getAllDoctor, getAllMedia, getPagingPatient, setDoctorIdReducer, setQCNameIdReducer, setStatusReducer } from "../../../features/patientSlice";
 import { useCheckRoleLeTan, useCheckRoleTuVan } from "../../../hooks/useCheckRole";
 import useClipboard from "../../../hooks/useClipboard";
 import useMenuData from "../../../hooks/useMenuData";
@@ -37,7 +37,7 @@ const AppointmentRegistrationList: FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [pageIndex, setPageIndex] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(50)
-    const { data, total, loading, doctor } = useSelector((state: RootState) => state.patient);
+    const { data, total, loading, doctor, department } = useSelector((state: RootState) => state.patient);
 
     const { entities } = useSelector((state: RootState) => state.users)
     const hospitalId = localStorage.getItem('hospitalId')
@@ -573,7 +573,45 @@ const AppointmentRegistrationList: FC = () => {
                 return Number(a.created_at) - Number(b.created_at)
             },
         },
-
+        // dành cho quảng cáo
+        {
+            title: t("DSDangKyHen:quang_cao"),
+            dataIndex: 'QCName',
+            key: 'QCName',
+            render(value, record, index) {
+                //những role id không được phép sủa 
+                const allowedRoleIds = [2, 3, 10, 12];
+                const isAllowed = allowedRoleIds.includes(entities?.role?.id);
+                const colSpan = record?.summary === true ? 0 : 1;
+                return {
+                    children: !isAllowed ? <div className={className(record)} style={{ cursor: 'pointer' }} >
+                        <Select
+                            allowClear
+                            size="small"
+                            placeholder={`--${t("DSDangKyHen:lua_chon")}--`}
+                            showSearch
+                            filterOption={(input, option) =>
+                                typeof option?.label === 'string' && option.label.toLowerCase().includes(input.toLowerCase())
+                            }
+                            value={record?.QCName}
+                            style={{ width: 130 }}
+                            onChange={(e) => handleChangeQCName(e, record)}
+                            options={department.length > 0 && department.map((item: any) => {
+                                return {
+                                    value: item.name,
+                                    label: item.name
+                                }
+                            })}
+                        />
+                    </div> : <>{value}</>,
+                    props: { colSpan }
+                }
+            },
+            width: 150,
+            sorter: (a, b) => {
+                return (a?.QCName ?? "").localeCompare(b?.QCName ?? "", "vi", { sensitivity: "base" })
+            }
+        },
 
         {
             title: t("DSDangKyHen:thao_tac"),
@@ -713,6 +751,22 @@ const AppointmentRegistrationList: FC = () => {
     const onChangePage = (page: number, pageSize: number) => {
         setPageIndex(page)
         setPageSize(pageSize)
+    }
+
+    const handleChangeQCName = async (e: any, record: any) => {
+        const body = {
+            patientId: record.id,
+            QCName: e
+        }
+        console.log(body, 'body');
+
+        dispatch(setQCNameIdReducer(body))
+        const result = await patiantAPI.updatePatientQCName(body)
+        if (result.data.statusCode === 1) {
+            toast.success('Cập nhật thành công!')
+        } else {
+            toast.warning('Cập nhật không thành công!')
+        }
     }
 
     return <Fragment>
