@@ -58,7 +58,7 @@ const FormCreateUser: FC<IProps> = (props) => {
 
   // thực hiện check chỉ có tài khoản admin và connieleung mới có quyền chỉnh sửa khi bệnh nhân đã đến
   // danh sách admin, connie, hoàng phương
-  const lockedUsers = [4, 54, 68];
+  const lockedUsers = [4, 34, 54, 68];
   const checkButton = id && patient?.patient?.status === "ĐÃ ĐẾN" ? lockedUsers.includes(userId ?? -1) ? false : true : false;
 
   return (
