@@ -57,10 +57,10 @@ const FormCreateUser: FC<IProps> = (props) => {
   const menu = useMenuData();
 
   // thực hiện check chỉ có tài khoản admin và connieleung mới có quyền chỉnh sửa khi bệnh nhân đã đến
-  // danh sách admin
-  const lockedUsers = [4];
+  // danh sách admin, hoàng phương
+  const lockedUsers = [4, 68];
   const checkButton = id && patient?.patient?.status === "ĐÃ ĐẾN" ? lockedUsers.includes(userId ?? -1) ? false : true : false;
-  
+
   return (
     <Fragment>
       <Form
@@ -394,10 +394,10 @@ const FormCreateUser: FC<IProps> = (props) => {
                   .toLowerCase()
                   .includes(input.toLowerCase())
               }
-              
+
               // chỉ có lễ tân và admin mới có quyền cập nhật đã đến
               options={
-                checkRoleLeTan || userId === 4 
+                checkRoleLeTan || userId === 4
                   ? STATUS()
                   : [
                     { id: "1", value: "CHỜ ĐỢI", label: "CHỜ ĐỢI" },
