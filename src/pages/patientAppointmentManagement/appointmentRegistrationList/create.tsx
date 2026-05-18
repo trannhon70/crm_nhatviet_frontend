@@ -106,6 +106,7 @@ const CreateAppointmentRegistrationList: FC = () => {
             form.setFieldValue('doctorId', patient.patient.doctorId);
             form.setFieldValue('record', patient.patient.record);
             form.setFieldValue('money', patient.patient.money);
+            form.setFieldValue('job', patient.patient.job);
         }
 
     }, [patient.patient.id])
@@ -174,7 +175,8 @@ const CreateAppointmentRegistrationList: FC = () => {
             chat: body.chat,
             treatment: body.treatment,
             record: body.record,
-            money: body.money || ''
+            money: body.money || '',
+            job: body.job || '',
         }
 
         if (id) {

@@ -25,6 +25,7 @@ import ComponentThongKe from "./componentThongKe";
 import FormSearch from "./formSearch";
 import ModalUpload from "./modalUpload";
 import ComponentPatientCause from "../../../components/patientCause";
+import { FaRegCopy } from "react-icons/fa";
 
 
 const scrollProps = {
@@ -214,6 +215,20 @@ const AppointmentRegistrationList: FC = () => {
                 };
             },
             sorter: (a, b) => (a.name ?? "").localeCompare(b.name ?? "", "vi", { sensitivity: "base" }),
+        },
+        {
+            title: t("DSDangKyHen:job"),
+            dataIndex: 'job',
+            key: 'job',
+            render(value, record, index) {
+                const colSpan = record?.summary === true ? 0 : 1;
+                return {
+                    children: value,
+                    props: { colSpan }
+                }
+            },
+            width: 130,
+            sorter: (a, b) => (a.gender ?? "").localeCompare(b.gender ?? "", "vi", { sensitivity: "base" }),
         },
         {
             title: t("DSDangKyHen:chi_phi"),
@@ -633,6 +648,15 @@ const AppointmentRegistrationList: FC = () => {
                         )
                     },
                     {
+                        key: '6',
+                        label: (
+                            <div onClick={() => onclickCopyDetail(record)} className='flex items-center cursor-pointer'>
+                                <FaRegCopy className='text-lime-500' size={20} />
+                                <span className='ml-2'>{t("DSDangKyHen:copy_chi_tiet")}</span>
+                            </div>
+                        )
+                    },
+                    {
                         key: '2',
                         label: (
                             <div className='flex items-center cursor-pointer'>
@@ -694,6 +718,22 @@ const AppointmentRegistrationList: FC = () => {
         },
     ];
 
+    const onclickCopyDetail = (data: any) => {
+        const rows = [
+            ["病人姓名 Tên bệnh nhân", data.name],
+            ["年龄 Năm sinh", data.yearOld],
+            ["职业 Nghề nghiệp", "tự do"],
+            ["地区 Khu vực", data.city.name],
+            ["病种 Loại bệnh", data.diseases.name],
+            ["预约号 Mã hẹn", data.code],
+            ["病人备注", data.content],
+        ];
+        const text = rows
+            .map(([label, value]) => `${label.padEnd(25, " ")}: ${value}`)
+            .join("\n");
+
+        copyToClipboard(text);
+    };
     const handleChangeStatusId = async (e: any, record: any) => {
         const body = {
             patientId: record.id,

@@ -6,7 +6,7 @@ export interface IPatient {
     //tuổi
     yearOld?: number;
     //số điện thoaị
-    phone?:string;
+    phone?: string;
     //nội dung tư ván
     content?: string;
     //bệnh
@@ -16,8 +16,8 @@ export interface IPatient {
     // nguồn đến
     mediaId?: number
     //thành phố
-    cityId?:string
-    districtId:string
+    cityId?: string
+    districtId: string
     //mã chuyên gia
     code?: string
     //thời gian hen
@@ -35,15 +35,16 @@ export interface IPatient {
     //người tạo
     userId?: number;
     //bệnh viện 
-    hospitalId?: number; 
-    chat?:string
+    hospitalId?: number;
+    chat?: string
     //ngày tạo
 
-     //mục điều trị
-     treatment?:string
-     
-     //hồ sơ tiếp nhận
-     record?:string
+    //mục điều trị
+    treatment?: string
 
-     money?: string
+    //hồ sơ tiếp nhận
+    record?: string
+
+    money?: string
+    job?: string
 }

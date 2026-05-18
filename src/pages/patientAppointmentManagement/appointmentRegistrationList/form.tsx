@@ -57,8 +57,8 @@ const FormCreateUser: FC<IProps> = (props) => {
   const menu = useMenuData();
 
   // thực hiện check chỉ có tài khoản admin và connieleung mới có quyền chỉnh sửa khi bệnh nhân đã đến
-  // danh sách admin, hoàng phương
-  const lockedUsers = [4, 68, 33];
+  // danh sách admin, dev, mạnh
+  const lockedUsers = [4, 33, 34];
   const checkButton = id && patient?.patient?.status === "ĐÃ ĐẾN" ? lockedUsers.includes(Number(userId) ?? -1) ? false : true : false;
 
   return (
@@ -304,6 +304,15 @@ const FormCreateUser: FC<IProps> = (props) => {
         </div>
         {/* right */}
         <div className="w-[50%] border-solid border-2 border-indigo-600 p-3 rounded-r ">
+          <Form.Item
+            name="job"
+            label={t("DSDangKyHen:job")}
+
+          >
+            <Input
+            // disabled={checkRoleLeTan}
+            />
+          </Form.Item>
           <Form.Item
             name="appointmentTime"
             label={t("DSDangKyHen:thoi_gian_hen")}
