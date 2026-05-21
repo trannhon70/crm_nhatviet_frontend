@@ -722,14 +722,14 @@ const AppointmentRegistrationList: FC = () => {
         const rows = [
             ["病人姓名 Tên bệnh nhân", data.name],
             ["年龄 Năm sinh", data.yearOld],
-            ["职业 Nghề nghiệp", "tự do"],
+            ["职业 Nghề nghiệp", data.job],
             ["地区 Khu vực", data.city.name],
             ["病种 Loại bệnh", data.diseases.name],
             ["预约号 Mã hẹn", data.code],
             ["病人备注", data.content],
         ];
         const text = rows
-            .map(([label, value]) => `${label.padEnd(25, " ")}: ${value}`)
+            .map(([label, value]) => `${label.padEnd(1, " ")}: ${value}`)
             .join("\n");
 
         copyToClipboard(text);
