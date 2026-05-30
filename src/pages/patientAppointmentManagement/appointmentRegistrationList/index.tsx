@@ -726,6 +726,7 @@ const AppointmentRegistrationList: FC = () => {
             ["地区 Khu vực", data.city.name],
             ["病种 Loại bệnh", data.diseases.name],
             ["预约号 Mã hẹn", data.code],
+            ["渠道 Nguồn đến", data.media.name],
             ["病人备注", data.content],
         ];
         const text = rows
