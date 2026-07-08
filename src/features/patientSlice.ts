@@ -179,6 +179,18 @@ const patientSlice = createSlice({
       });
     },
 
+    setLocationReducer(state, action) {
+      state.data = state.data.map((item: any) => {
+        if (item.id === action.payload.patientId) {
+          return {
+            ...item,
+            location_QC: action.payload.location_QC,
+          };
+        }
+        return item;
+      });
+    },
+
     setQCNameIdReducer(state, action) {
       state.data = state.data.map((item: any) => {
         if (item.id === action.payload.patientId) {
@@ -287,5 +299,5 @@ const patientSlice = createSlice({
   },
 });
 
-export const { setPatient, setDoctorIdReducer, setStatusReducer, setQCNameIdReducer } = patientSlice.actions;
+export const { setPatient, setDoctorIdReducer, setStatusReducer, setQCNameIdReducer, setLocationReducer } = patientSlice.actions;
 export const patientReducer = patientSlice.reducer;

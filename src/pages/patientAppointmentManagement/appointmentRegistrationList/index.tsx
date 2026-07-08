@@ -15,7 +15,7 @@ import Loading from "../../../components/loading";
 import NotHospital from "../../../components/notHospital";
 import PopconfirmComponent from "../../../components/popconfirmComponent";
 import TableComponent from "../../../components/tableComponent";
-import { fetchCity, getAllByIdHospital, getAllDoctor, getAllMedia, getPagingPatient, setDoctorIdReducer, setQCNameIdReducer, setStatusReducer } from "../../../features/patientSlice";
+import { fetchCity, getAllByIdHospital, getAllDoctor, getAllMedia, getPagingPatient, setDoctorIdReducer, setLocationReducer, setQCNameIdReducer, setStatusReducer } from "../../../features/patientSlice";
 import { useCheckRoleLeTan, useCheckRoleTuVan } from "../../../hooks/useCheckRole";
 import useClipboard from "../../../hooks/useClipboard";
 import useMenuData from "../../../hooks/useMenuData";
@@ -38,7 +38,7 @@ const AppointmentRegistrationList: FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [pageIndex, setPageIndex] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(50)
-    const { data, total, loading, doctor, department } = useSelector((state: RootState) => state.patient);
+    const { data, total, loading, doctor, department, city } = useSelector((state: RootState) => state.patient);
 
     const { entities } = useSelector((state: RootState) => state.users)
     const hospitalId = localStorage.getItem('hospitalId')
@@ -412,6 +412,35 @@ const AppointmentRegistrationList: FC = () => {
             },
         },
         {
+            title: t("DSDangKyHen:khu_vuc/tu_van"),
+            key: 'location_QC',
+            dataIndex: 'location_QC',
+            width: 150,
+            render(value, record, index) {
+                return <Select
+                    allowClear
+                    size="small"
+                    placeholder={`--${t("DSDangKyHen:lua_chon")}--`}
+                    showSearch
+                    filterOption={(input, option) =>
+                        typeof option?.label === 'string' && option.label.toLowerCase().includes(input.toLowerCase())
+                    }
+                    value={record?.location_QC}
+                    style={{ width: 130 }}
+                    onChange={(e) => handleChangeCity(e, record)}
+                    options={city.length > 0 && city.map((item: any) => {
+                        return {
+                            value: item.name,
+                            label: item.name
+                        }
+                    })}
+                />
+            },
+            sorter: (a, b) => {
+                return (a?.city?.name ?? "").localeCompare(b?.city?.name ?? "", "vi", { sensitivity: "base" })
+            }
+        },
+        {
             title: t("DSDangKyHen:nguyen_nhan_benh_khong_den"),
             key: 'reason',
             dataIndex: 'reason',
@@ -762,6 +791,22 @@ const AppointmentRegistrationList: FC = () => {
             toast.warning('Cập nhật không thành công!')
         }
     }
+
+    const handleChangeCity = async (e: any, record: any) => {
+
+        const body = {
+            patientId: record.id,
+            location_QC: e
+        }
+        dispatch(setLocationReducer(body))
+        const result = await patiantAPI.updatePatientLocation(body)
+        if (result.data.statusCode === 1) {
+            toast.success('Cập nhật thành công!')
+        } else {
+            toast.warning('Cập nhật không thành công!')
+        }
+    }
+
     const onClickHistory = (id: number) => {
         navige(`/danh-sach-dang-ky-hen/history/${id}`)
     }
