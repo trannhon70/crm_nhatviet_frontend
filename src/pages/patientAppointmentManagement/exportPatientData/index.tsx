@@ -17,7 +17,7 @@ const ExportPatientData: FC = () => {
     const [check, setCheck] = useState({
         name: true, gender: false, yearOld: false, phone: false, content: false, department: false, diseases: false, city: false,
         district: false, code: false, appointmentTime: false, reminderTime: false, note: false, status: false, doctor: false, user: false, treatment: false,
-        created_at: false, media: false, QCName: false
+        created_at: false, media: false, QCName: false, location_QC: false
     })
     const [query, setQuery] = useState<any>({
         hospitalId: Number(hospitalId),
@@ -133,6 +133,7 @@ const ExportPatientData: FC = () => {
                                 {check.user && <td className="border p-1">{item?.user?.fullName}</td>}
                                 {check.treatment && <td className="border p-1">{item?.treatment}</td>}
                                 {check.QCName && <td className="border p-1">{item?.QCName}</td>}
+                                {check.location_QC && <td className="border p-1">{item?.location_QC}</td>}
                                 {check.created_at && (
                                     <td className="border p-1">
                                         {moment(item?.created_at * 1000).format("DD-MM-YYYY HH:mm:ss")}

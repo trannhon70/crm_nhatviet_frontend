@@ -88,6 +88,10 @@ const ComponentExportData: FC<IProps> = (props) => {
     setCheck((form: any) => ({ ...form, QCName: e.target.checked }))
   };
 
+  const onChangelocation_QC: CheckboxProps['onChange'] = (e) => {
+    setCheck((form: any) => ({ ...form, location_QC: e.target.checked }))
+  };
+
   const onChangeMedia: CheckboxProps['onChange'] = (e) => {
     setCheck((form: any) => ({ ...form, media: e.target.checked }))
   };
@@ -140,6 +144,7 @@ const ComponentExportData: FC<IProps> = (props) => {
       <Checkbox onChange={onChangeMDT} checked={check.treatment}>{t("DSDangKyHen:muc_dieu_tri")}</Checkbox>
       <Checkbox onChange={onChangeTGT} checked={check.created_at}>{t("DSDangKyHen:thoi_gian_them")}</Checkbox>
       <Checkbox onChange={onChangeQCName} checked={check.QCName}>{t("DSDangKyHen:quang_cao")}</Checkbox>
+      <Checkbox onChange={onChangelocation_QC} checked={check.location_QC}>{t("DSDangKyHen:khu_vuc/tu_van")}</Checkbox>
       <Button onClick={onClickCheckAll} variant="dashed" color="primary" type="default" >{t("BCCTDVKH:tat_ca")}</Button>
       <Button onClick={onClickComeBack} variant="outlined" color="danger" type="primary" >{t("DSDangKyHen:quay_lai")}</Button>
     </div>
