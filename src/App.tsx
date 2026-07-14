@@ -66,7 +66,31 @@ const App: React.FC = () => {
     }
   }, [setAuthenticated]);
 
+  useEffect(() => {
+    // 🚫 Chặn chuột phải
+    const handleContextMenu = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("contextmenu", handleContextMenu);
 
+    // 🚫 Chặn phím tắt DevTools, View Source, PrintScreen
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey &&
+          e.shiftKey &&
+          (e.key === "I" || e.key === "C" || e.key === "J")) ||
+        (e.ctrlKey && e.key === "U") ||
+        e.key === "PrintScreen"
+      ) {
+        e.preventDefault();
+        alert("🚫 DevTools hoặc chụp màn hình bị cấm!");
+      }
+    };
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
 
   return (

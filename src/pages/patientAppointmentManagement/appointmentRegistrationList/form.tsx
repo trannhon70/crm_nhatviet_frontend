@@ -13,6 +13,7 @@ import moment from "moment";
 import { FC, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  useCheckRoleAdmin,
   useCheckRoleLeTan,
   useCheckRoleTuVan,
 } from "../../../hooks/useCheckRole";
@@ -54,6 +55,7 @@ const FormCreateUser: FC<IProps> = (props) => {
   const { t } = useTranslation(["DSDangKyHen"]);
   const checkRoleTuVan = useCheckRoleTuVan();
   const checkRoleLeTan = useCheckRoleLeTan();
+  const checkRoleAdmin = useCheckRoleAdmin();
   const menu = useMenuData();
 
   // thực hiện check chỉ có tài khoản admin và connieleung mới có quyền chỉnh sửa khi bệnh nhân đã đến
@@ -124,6 +126,7 @@ const FormCreateUser: FC<IProps> = (props) => {
             ]}
           >
             <Input
+              disabled={id && checkRoleAdmin === false ? true : false}
               onChange={(e) => setError({ ...error, phone: false })}
               status={error.phone === true ? "error" : ""}
               type="number"
