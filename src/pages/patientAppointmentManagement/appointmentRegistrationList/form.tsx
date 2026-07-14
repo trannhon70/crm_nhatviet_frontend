@@ -126,7 +126,7 @@ const FormCreateUser: FC<IProps> = (props) => {
             ]}
           >
             <Input
-              disabled={id && checkRoleAdmin === false ? true : false}
+              disabled={id && checkRoleTuVan === true ? true : false}
               onChange={(e) => setError({ ...error, phone: false })}
               status={error.phone === true ? "error" : ""}
               type="number"
