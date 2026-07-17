@@ -49,7 +49,7 @@ const CreateAppointmentRegistrationList: FC = () => {
     const navige = useNavigate()
     const hospitalId = localStorage.getItem('hospitalId')
     const dispatch = useDispatch<AppDispatch>();
-    const { patient, users, disease } = useSelector((state: RootState) => state);
+    const { patient, users, disease, hospital } = useSelector((state: RootState) => state);
     let { id } = useParams();
     const [error, setError] = useState<any>({
         reminderTime: false,
@@ -57,6 +57,8 @@ const CreateAppointmentRegistrationList: FC = () => {
     })
     const { t } = useTranslation(['DSDangKyHen'])
 
+    console.log(hospitalId, 'hospitalId');
+    console.log(hospital.hospitalById.id, 'hospital redux');
 
     useEffect(() => {
         dispatch(fetchCity());
@@ -171,7 +173,7 @@ const CreateAppointmentRegistrationList: FC = () => {
             editregistrationTime: body.editregistrationTime ? dayjs(body.editregistrationTime).unix() : 0,
             status: body.status,
             doctorId: body.doctorId,
-            hospitalId: Number(hospitalId),
+            hospitalId: Number(hospital.hospitalById.id),
             chat: body.chat,
             treatment: body.treatment,
             record: body.record,
